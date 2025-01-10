@@ -27,13 +27,14 @@ def encrypt_data(key: bytes, data: str) -> bytes:
     padder = padding.PKCS7(128).padder()
     padded_data = padder.update(data_bytes) + padder.finalize()
 
-    iv = os.urandom(16) 
+    iv = os.urandom(16)
     cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
     encryptor = cipher.encryptor()
 
     encrypted_data = encryptor.update(padded_data) + encryptor.finalize()
 
-    return iv + encrypted_data 
+    return iv + encrypted_data
+
 
 def decrypt_data(key: bytes, encrypted_data: bytes) -> str:
     """

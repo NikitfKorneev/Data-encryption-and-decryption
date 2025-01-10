@@ -6,14 +6,14 @@ import getpass
 
 def encrypt_operation():
     """
-    Функция для выполнения операции шифрования данных.
+    Выполняет операцию шифрования данных.
     Запрашивает у пользователя логин и пароль, генерирует ключ для шифрования,
     затем шифрует данные с использованием AES и выводит зашифрованные данные.
+    После этого расшифровывает данные и проверяет их корректность.
     """
     print("Вы выбрали шифрование данных.")
 
     username = input("Введите ваш логин: ")
-
     password = getpass.getpass("Введите ваш пароль: ")
 
     if not validate_input(username, password):
@@ -44,7 +44,7 @@ def encrypt_operation():
 
 def decrypt_operation():
     """
-    Функция для выполнения операции расшифровки данных.
+    Выполняет операцию расшифровки данных.
     Запрашивает у пользователя зашифрованные данные (в шестнадцатеричном формате),
     затем расшифровывает их с использованием AES и выводит расшифрованные данные.
     """
@@ -82,10 +82,16 @@ def decrypt_operation():
 
         print(f"Расшифрованный логин: {decrypted_username}")
         print(f"Расшифрованный пароль: {decrypted_password}")
-
-
     except Exception as e:
         print(f"Ошибка расшифровки данных: {e}")
+
+
+def exit_program():
+    """
+    Завершает выполнение программы.
+    """
+    print("Выход из программы.")
+    exit()
 
 
 def main():
@@ -96,6 +102,12 @@ def main():
     """
     print("Добро пожаловать в систему шифрования!")
 
+    actions = {
+        '1': encrypt_operation,
+        '2': decrypt_operation,
+        '3': exit_program
+    }
+
     while True:
         print("\nЧто вы хотите сделать?")
         print("1. Зашифровать данные")
@@ -104,15 +116,11 @@ def main():
 
         choice = input("Введите номер операции (1, 2 или 3): ")
 
-        if choice == '1':
-            encrypt_operation()
-        elif choice == '2':
-            decrypt_operation()
-        elif choice == '3':
-            print("Выход из программы.")
-            break
+        action = actions.get(choice)
+        if action:
+            action()
         else:
-            print("Неверный выбор! Попробуйте снова.")
+            print("Ошибка: введите корректный номер операции (1, 2 или 3). Попробуйте снова.")
 
 
 if __name__ == "__main__":
