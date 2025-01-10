@@ -12,7 +12,6 @@ def encrypt_operation():
     """
     print("Вы выбрали шифрование данных.")
 
-    
     username = input("Введите ваш логин: ")
 
     password = getpass.getpass("Введите ваш пароль: ")
@@ -33,6 +32,14 @@ def encrypt_operation():
 
     print(f"Зашифрованный логин: {encrypted_username.hex()}")
     print(f"Зашифрованный пароль: {encrypted_password.hex()}")
+
+    decrypted_username = decrypt_data(key, encrypted_username)
+    decrypted_password = decrypt_data(key, encrypted_password)
+
+    if decrypted_username == username and decrypted_password == password:
+        print("\nУспешная проверка: логин и пароль верны после расшифровки.")
+    else:
+        print("\nОшибка: данные после расшифровки не совпадают с исходными!")
 
 
 def decrypt_operation():
@@ -75,6 +82,7 @@ def decrypt_operation():
 
         print(f"Расшифрованный логин: {decrypted_username}")
         print(f"Расшифрованный пароль: {decrypted_password}")
+
 
     except Exception as e:
         print(f"Ошибка расшифровки данных: {e}")
