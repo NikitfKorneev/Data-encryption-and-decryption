@@ -14,3 +14,11 @@
 1. Клонируйте репозиторий:
    ```bash
    https://github.com/NikitfKorneev/Data-encryption-and-decryption
+   
+2. Установка зависимостей:
+   ```bash
+   pip install -r requirements.txt
+
+4. Запуск программы
+   ```bash
+   python3 main.py
