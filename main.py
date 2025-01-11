@@ -15,7 +15,7 @@ def encrypt_operation():
 
     username = input("Введите ваш логин: ")
     password = getpass.getpass("Введите ваш пароль: ")
-
+    
     if not validate_input(username, password):
         return
 
@@ -114,7 +114,7 @@ def main():
         print("2. Расшифровать данные")
         print("3. Выйти")
 
-        choice = input("Введите номер операции (1, 2 или 3): ")
+        choice = input("Введите номер операции (1, 2 или 3): ").strip()
 
         action = actions.get(choice)
         if action:

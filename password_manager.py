@@ -1,15 +1,15 @@
 import re
 
-PASSWORD_PATTERN = re.compile(r'^[A-Za-z0-9@#$%^&+=]+$')
+PASSWORD_PATTERN = re.compile(r'^[\x20-\x7E]+$')
 
 
 def validate_input(username: str, password: str) -> bool:
     """
     Проверяет корректность ввода логина и пароля.
 
-    :param username: Логин пользователя.
-    :param password: Пароль пользователя.
-    :return: True, если ввод корректен, иначе False.
+    param username: Логин пользователя.
+    param password: Пароль пользователя.
+    return: True, если ввод корректен, иначе False.
     """
     if not username or not password:
         print("Логин и пароль не могут быть пустыми.")
